@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_states.h                                      :+:      :+:    :+:   */
+/*   player_state_functions.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 18:28:41 by schiper           #+#    #+#             */
-/*   Updated: 2025/02/11 14:11:14 by schiper          ###   ########.fr       */
+/*   Created: 2025/02/11 13:51:33 by schiper           #+#    #+#             */
+/*   Updated: 2025/02/11 13:54:58 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#if !defined(GAME_STATES_H)
-# define GAME_STATES_H
+#include "player_states.h"
 
-# define GAME_STATE_NUMBER 4
-
-typedef enum bla
+int	get_state(t_player_states state)
 {
-	STATE_INIT,
-	STATE_MENU,
-	STATE_GAME,
-	STATE_EXIT
-}	t_game_states;
-
-#endif // GAME_STATES_H
+	return (state);
+}

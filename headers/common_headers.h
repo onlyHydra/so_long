@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_states.h                                      :+:      :+:    :+:   */
+/*   common_headers.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 18:28:41 by schiper           #+#    #+#             */
-/*   Updated: 2025/02/11 14:11:14 by schiper          ###   ########.fr       */
+/*   Created: 2025/02/11 13:35:41 by schiper           #+#    #+#             */
+/*   Updated: 2025/02/11 13:35:42 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#if !defined(GAME_STATES_H)
-# define GAME_STATES_H
+#if !defined(COMMON_HEADERS_H)
+# define COMMON_HEADERS_H
 
-# define GAME_STATE_NUMBER 4
+# include <stddef.h>
+# include <stdlib.h>
 
-typedef enum bla
-{
-	STATE_INIT,
-	STATE_MENU,
-	STATE_GAME,
-	STATE_EXIT
-}	t_game_states;
-
-#endif // GAME_STATES_H
+#endif // COMMON_HEADERS_H
