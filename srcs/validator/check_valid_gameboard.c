@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:15:46 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/17 16:27:46 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/19 15:41:57 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	validate_path_to_end(char **game_board,
 		t_game_elements *game_elements, int *apparance_rate_game_elements)
 {
-	return (0);
+	return (1);
 }
 
 // validates if the unique game elements conditions is applied to the game board
