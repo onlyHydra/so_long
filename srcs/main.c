@@ -1,30 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_elements.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 12:33:22 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/19 12:30:24 by schiper          ###   ########.fr       */
+/*   Created: 2025/03/17 17:05:52 by schiper           #+#    #+#             */
+/*   Updated: 2025/03/17 17:31:25 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#if !defined(GAME_ELEMENTS_H)
-# define GAME_ELEMENTS_H
 
-# define START_POINT 'P'
-# define END_POINT 'E'
-# define COLLECTIBLE 'C'
-# define EMPTY_SPACE '0'
-# define WALL '1'
 
-typedef struct s_game_elements
-{
-	int	start_point_x;
-	int	start_point_y;
-	int	end_point_x;
-	int	end_point_y;
-}		t_game_elements;
-
-#endif // GAME_ELEMENTS_H
