@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:33:22 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/23 14:39:29 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/23 15:25:29 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,32 @@ typedef struct s_sprites
 
 typedef struct s_assets
 {
-	t_sprites	player_up;
-	t_sprites	player_down;
-	t_sprites	player_left;
-	t_sprites	player_right;
-	t_sprites	wall;
-	t_sprites	collectible;
-	t_sprites	empty_space;
-	t_sprites	end_point;
-	t_sprites	enemy;
+	t_sprites	*player_up;
+	t_sprites	*player_down;
+	t_sprites	*player_left;
+	t_sprites	*player_right;
+	t_sprites	*wall;
+	t_sprites	*collectible;
+	t_sprites	*empty_space;
+	t_sprites	*end_point;
+	t_sprites	*enemy;
 }				t_assets;
 
+typedef struct s_settings
+{
+	char		*player_up_path;
+	char		*player_down_path;
+	char		*player_left_path;
+	char		*player_right_path;
+	char		*wall_path;
+	char		*collectible_path;
+	char		*empty_space_path;
+	char		*end_point_path;
+	char		*enemy_path;
+	int			map_width;
+	int			map_height;
+	int			tile_size;
+	int			collectibles;
+	int			enemy;
+}				t_settings;
 #endif // GAME_ELEMENTS_H
