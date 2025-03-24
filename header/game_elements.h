@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:33:22 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/23 15:25:29 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/24 13:11:12 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,8 @@ typedef struct s_settings
 	int			collectibles;
 	int			enemy;
 }				t_settings;
+
+int				validate_game_board(char **game_board,
+					int *apparance_rate_game_elements,
+					t_game_elements *game_elements);
 #endif // GAME_ELEMENTS_H

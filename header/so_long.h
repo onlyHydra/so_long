@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:04:50 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/23 14:38:43 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/24 13:07:54 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+char	**create_gameboard(char *file_name, int **freg_vector);
 
 #endif // SO_LONG_H

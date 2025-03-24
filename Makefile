@@ -6,7 +6,7 @@
 #    By: schiper <schiper@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 12:11:18 by schiper           #+#    #+#              #
-#    Updated: 2025/03/19 15:32:26 by schiper          ###   ########.fr        #
+#    Updated: 2025/03/24 12:51:47 by schiper          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ SRC_FILES =
 # Object files
 COMMON_OBJ  = $(COMMON_SRC:.c=.o)
 MANDATORY_OBJ = $(MANDATORY_SRC:.c=.o)
-BONUS_OBJ   = $(BONUS_SRC:.c=.o
+BONUS_OBJ   = $(BONUS_SRC:.c=.o)
 
 
 
