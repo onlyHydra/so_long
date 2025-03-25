@@ -6,30 +6,66 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:15:46 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/19 15:45:49 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/25 14:43:36 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/game_elements.h"
+#include "header/so_long.h"
+
+static void	flood_fill(char **board, int x, int y)
+{
+	if (board[x][y] != EMPTY_SPACE && board[x][y] != START_POINT)
+		return ;
+	if (board[x][y] == EMPTY_SPACE)
+		board[x][y] = 'M';
+	flood_fill(board, x - 1, y);
+	flood_fill(board, x + 1, y);
+	flood_fill(board, x, y - 1);
+	flood_fill(board, x, y + 1);
+}
 
 static int	validate_path_to_end(char **game_board,
-		t_game_elements *game_elements, int *apparance_rate_game_elements)
+		t_game_elements *game_elements)
 {
-	return (0);
+	int	x;
+	int	y;
+	int	true_flag;
+
+	x = 0;
+	true_flag = 0;
+	flood_fill(game_board, game_elements->start_point_x,
+		game_elements->start_point_y);
+	while (game_board[x])
+	{
+		y = 0;
+		while (game_board[x][y] != '\n' || game_board[x][y] != '\0')
+		{
+			if (game_board[x][y] != WALL && game_board[x][y] != 'M')
+			{
+				true_flag += (game_board[x][y - 1] == 'M');
+				true_flag += (game_board[x][y + 1] == 'M');
+				true_flag += (game_board[x - 1][y] == 'M');
+				true_flag += (game_board[x + 1][y] == 'M');
+			}
+			y++;
+		}
+		x++;
+	}
+	return (true_flag);
 }
 
 // validates if the unique game elements conditions is applied to the game board
-static int	validate_unique_game_elements(int *apparance_rate_game_elements)
+static int	validate_unique_game_elements(int *freq_vector)
 {
 	int	check_sum;
 	int	returned_sum;
 
 	returned_sum = 0;
-	check_sum = apparance_rate_game_elements[START_POINT]
-		+ apparance_rate_game_elements[END_POINT];
+	check_sum = freq_vector[START_POINT] + freq_vector[END_POINT];
 	if (check_sum != 2)
 		returned_sum += 3;
-	check_sum += apparance_rate_game_elements[COLLECTIBLE];
+	check_sum += freq_vector[COLLECTIBLE];
 	if (check_sum == 2)
 		returned_sum += 7;
 	return (returned_sum);
@@ -63,14 +99,14 @@ static int	validate_boarder(char **game_board)
 }
 
 // checks all conditions for a valid game board
-int	validate_game_board(char **game_board, int *apparance_rate_game_elements,
+int	validate_game_board(char **game_board, int *freq_vector,
 		t_game_elements *game_elements)
 {
 	int	valid;
 
 	valid = validate_boarder(game_board)
-		+ validate_unique_game_elements(apparance_rate_game_elements)
-		+ validate_path_to_end(game_board, game_elements,
-			apparance_rate_game_elements);
+		+ validate_unique_game_elements(freq_vector);
+	if (validate_path_to_end(game_board, game_elements) != 0)
+		add_error_message("Not all elements on the board are reachable");
 	return (valid);
 }
