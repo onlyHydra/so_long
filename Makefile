@@ -6,17 +6,15 @@
 #    By: schiper <schiper@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 12:11:18 by schiper           #+#    #+#              #
-#    Updated: 2025/03/24 12:51:47 by schiper          ###   ########.fr        #
+#    Updated: 2025/03/25 19:40:32 by schiper          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 NAME_BONUS = so_long_bonus
 
-
 CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror -g $(SYSTEM)
+CFLAGS = -Wall -Wextra -Werror -g $(SYSTEM) -I$(INC_DIR)
 
 OS_NAME = $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
@@ -32,6 +30,7 @@ MD			=	mkdir -p
 CP			=	cp -f
 
 IMPORT = imports
+INC_DIR = header
 
 # Path to the MinilibX folder 
 MLX_PATH = $(IMPORT)/minilibx-linux
@@ -51,24 +50,28 @@ LIBFT_LIB = $(LIBFT_PATH)/libft.a
 FT_PRINTF_PATH = $(IMPORT)/ft_printf
 FT_PRINTF_LIB = $(FT_PRINTF_PATH)/libftprintf.a
 
-#Path for get_next_line (if needed for your project)
+# Path for get_next_line (if needed for your project)
 GET_NEXT_LINE_PATH = $(IMPORT)/get_next_line
 GET_NEXT_LINE_LIB = $(GET_NEXT_LINE_PATH)/libgnl.a
 
-
 # Sources and object files
 SRC_DIR = srcs
-MDR_DIR = mandatory
-BNS_DIR = bonus
-INC_DIR = header
-SRC_FILES = 
+MANDATORY_SRC = \
+	$(SRC_DIR)/validator/check_valid_gameboard.c \
+	$(SRC_DIR)/game/mechanics/char_movement.c \
+	$(SRC_DIR)/game/visuals/visuals.c \
+	$(SRC_DIR)/game/game_loop.c \
+	$(SRC_DIR)/initialise/create_board.c \
+	$(SRC_DIR)/initialise/initialise.c \
+	$(SRC_DIR)/initialise/load_elements.c \
+	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/memory_management/free_mlx.c
 
 # Object files
 COMMON_OBJ  = $(COMMON_SRC:.c=.o)
 MANDATORY_OBJ = $(MANDATORY_SRC:.c=.o)
 BONUS_OBJ   = $(BONUS_SRC:.c=.o)
-
-
 
 # Color definitions for terminal output
 NO_COLOR      = \033[0m
@@ -100,13 +103,29 @@ download_mlx:
 	@rm -f $(MLX_TAR)
 	@printf "$(OK_STRING)$(OK_COLOR)MinilibX downloaded and extracted.\n $(NO_COLOR)"
 
-all: check_mlx $(NAME)
 
-$(NAME): $(COMMON_OBJ) $(MANDATORY_OBJ)
+
+# Ensure ft_printf is built next (if needed)
+ft_printf: 
+	@echo "Building ft_printf..."
+	@$(MAKE) -C $(FT_PRINTF_PATH)
+
+# Ensure get_next_line is built (if needed)
+get_next_line:
+	@echo "Building get_next_line..."
+	@$(MAKE) -C $(GET_NEXT_LINE_PATH)
+
+# Default target (this will be used if no target is specified)
+all: check_mlx libft ft_printf get_next_line $(NAME)
+
+$(NAME): $(MANDATORY_OBJ)  $(FT_PRINTF_LIB) $(GET_NEXT_LINE_LIB) $(MLX_LIB)
 	@echo "Compiling $(NAME)..."
-	@$(CC) $(CFLAGS) $(COMMON_OBJ) $(MANDATORY_OBJ) -o $(NAME) $(MLXFLAGS)
+	@$(CC) $(CFLAGS) $(MANDATORY_OBJ) $(FT_PRINTF_LIB) $(GET_NEXT_LINE_LIB) $(MLX_LIB) -o $(NAME) $(MLXFLAGS)
 	@echo "$(OK_STRING) $(OK_COLOR)$(NAME) compiled successfully!$(NO_COLOR)"
 
+# Rule to compile .c files to .o object files
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Default target (if no target specified)
-.PHONY: all check_mlx download_mlx
+.PHONY: all check_mlx download_mlx libft ft_printf get_next_line

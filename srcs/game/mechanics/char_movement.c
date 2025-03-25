@@ -6,12 +6,12 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 13:50:13 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 16:11:10 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:38:57 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/game_elements.h"
-#include "header/so_long.h"
+#include "game_elements.h"
+#include "so_long.h"
 
 static int	move_resume(int dir)
 {

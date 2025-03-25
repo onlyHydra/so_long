@@ -1,0 +1,10 @@
+./validator/check_valid_gameboard.c
+./game/mechanics/char_movement.c
+./game/visuals/visuals.c
+./game/game_loop.c
+./initialise/create_board.c
+./initialise/initialise.c
+./initialise/load_elements.c
+./main.c
+./utils.c
+./memory_management/free_mlx.c

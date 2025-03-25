@@ -6,12 +6,12 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:23:12 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 18:04:57 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:37:51 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/game_elements.h"
-#include "imports/minilibx-linux/mlx.h"
+#include "game_elements.h"
+#include "mlx.h"
 
 void	free_assets(void *mlx, t_assets *assets)
 {

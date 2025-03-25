@@ -6,13 +6,13 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:29:19 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 17:12:31 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:38:13 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_elements.h"
-#include "imports/get_next_line/get_next_line_bonus.h"
-#include "imports/minilibx-linux/mlx.h"
+#include "get_next_line_bonus.h"
+#include "mlx.h"
 #include "so_long.h"
 
 static void	update_movements(t_game **game)

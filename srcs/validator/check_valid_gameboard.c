@@ -6,12 +6,12 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:15:46 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 17:46:57 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:39:07 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/game_elements.h"
-#include "header/so_long.h"
+#include "game_elements.h"
+#include "so_long.h"
 
 static void	flood_fill(char **board, int x, int y)
 {

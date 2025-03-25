@@ -6,12 +6,12 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:37 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/24 13:03:01 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:38:24 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/game_elements.h"
-#include "imports/get_next_line/get_next_line.h"
+#include "game_elements.h"
+#include "get_next_line.h"
 
 static char	**realocate_gameboard(char **game_board, int *size)
 {

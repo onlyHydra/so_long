@@ -6,12 +6,12 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:54:32 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 17:00:48 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:38:01 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/game_elements.h"
-#include "imports/minilibx-linux/mlx.h"
+#include "game_elements.h"
+#include "mlx.h"
 
 t_entity	load_player(char **game_board)
 {
