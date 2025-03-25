@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:09:42 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 17:12:35 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:48:35 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	game_printer(t_game *game)
 	{
 		while (x < game->x)
 		{
-			game_type(game, x * IMG_PXL, y * IMG_PXL);
+			render_map(game, x * IMG_PXL, y * IMG_PXL);
 			x++;
 		}
 		x = 0;
