@@ -6,11 +6,11 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:05:23 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/18 14:13:43 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:30:39 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_strlen1(const char *s)
 {
