@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:29:19 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/26 21:11:45 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/28 23:04:04 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,23 @@ static void	update_movements(t_game *game)
 t_game	initialise_all(char *str)
 {
 	int				*freg_vector;
-	char			**game_board;
 	t_game_elements	game_elements;
 	t_game			game;
 
-	freg_vector = malloc(sizeof(int) * 256);
 	game.mlx = mlx_init();
 	game.settings = load_settings();
-	game.assets = load_assets(game.mlx, &(game.settings));
-	game_board = create_gameboard(str, &freg_vector);
+	game.assets = load_assets(game.mlx, &game.settings);
+	game.game_board = create_gameboard(str);
 	game_elements = load_elements(game.game_board);
-	validate_game_board(game_board, freg_vector, &game_elements);
-	game.game_board = game_board;
+	validate_game_board(game.game_board, &game_elements);
 	game.player = load_player(game.game_board);
 	game.move = 0;
+	freg_vector = populate_freg_vector(game.game_board);
 	game.collectibles = freg_vector[COLLECTIBLE];
+	free(freg_vector);
 	game.exit = 0;
+	game.x = ft_strlen(game.game_board[0]) - 1;
+	game.y = get_game_board_size(game.game_board);
 	update_movements(&game);
 	return (game);
 }

@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:33:22 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/26 21:27:20 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/29 00:12:25 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # define EMPTY_SPACE '0'
 # define WALL '1'
 
-# define UP 13
-# define DOWN 1
-# define LEFT 0
-# define RIGHT 2
-# define ESC 53
+# define UP 119
+# define DOWN 115
+# define LEFT 97
+# define RIGHT 100
+# define ESC 65307
 
-# define IMG_PXL 50
+# define IMG_PXL 64
 
 typedef struct s_game_elements
 {
@@ -58,7 +58,6 @@ typedef struct s_assets
 	t_sprites		*collectible;
 	t_sprites		*empty_space;
 	t_sprites		*end_point;
-	t_sprites		*enemy;
 }					t_assets;
 
 typedef struct s_settings
@@ -91,14 +90,14 @@ typedef struct s_game
 }					t_game;
 
 int					validate_game_board(char **game_board,
-						int *apparance_rate_game_elements,
 						t_game_elements *game_elements);
-void				update_sprites(t_game *game, int x, int y, int dir);
+void				update_sprites(t_game game, int x, int y, int dir);
 void				move(t_game *game, int dir);
 void				ft_win(t_game *game);
 int					ft_close(t_game *game);
+int					game_loop(t_game *game);
 void				render_map(t_game *game, int x, int y);
-void				print_movements(t_game *game);
+void				print_movements(t_game game);
 void				game_printer(t_game *game);
 t_assets			load_assets(void *mlx, t_settings *settings);
 t_settings			load_settings(void);
@@ -106,6 +105,8 @@ t_entity			load_player(char **game_board);
 t_game_elements		load_elements(char **game_board);
 t_game				initialise_all(char *str);
 t_sprites			*image_to_sprite(void *mlx, char *path);
-int					game_loop(t_game *game);
 void				free_double_array(char **array);
+int					*populate_freg_vector(char **game_board);
+char				**copy_game_board(char **game_board);
+
 #endif // GAME_ELEMENTS_H

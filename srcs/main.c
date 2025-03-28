@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:05:52 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/26 21:13:15 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/29 00:14:03 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 int	ft_key_hook(int keycode, t_game *game)
 {
+	ft_printf("keycode: %d\n", keycode);
 	if (keycode == ESC)
 		ft_close(game);
 	else if (keycode == UP)
@@ -35,6 +36,16 @@ int	ft_key_hook(int keycode, t_game *game)
  *  initialise all elements
  */
 
+static void	game_loop2(t_game *game)
+{
+	game->wnd = mlx_new_window(game->mlx, game->x * IMG_PXL, game->y * IMG_PXL,
+			"so_long");
+	game_printer(game);
+	mlx_key_hook(game->wnd, ft_key_hook, game);
+	mlx_hook(game->wnd, 17, 0L, ft_close, game);
+	mlx_loop(game->mlx);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -45,11 +56,6 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	game = initialise_all(argv[1]);
-	game.wnd = mlx_new_window(game.mlx, game.x * IMG_PXL, game.y * IMG_PXL,
-			"so_long");
-	mlx_hook(game.wnd, 17, 1L << 2, ft_close, &game);
-	mlx_key_hook(game.wnd, ft_key_hook, &game);
-	mlx_loop_hook(game.mlx, game_loop, &game);
-	mlx_loop(game.mlx);
+	game_loop2(&game);
 	return (0);
 }

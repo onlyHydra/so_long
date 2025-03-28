@@ -6,13 +6,13 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:37 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/26 20:57:31 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:49:21 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "game_elements.h"
 #include "get_next_line.h"
-#include "ft_printf.h"
 
 static char	**realocate_gameboard(char **game_board, int *size)
 {
@@ -23,30 +23,41 @@ static char	**realocate_gameboard(char **game_board, int *size)
 	index = 0;
 	new_size = *size * 2;
 	new_game_board = malloc(sizeof(char *) * new_size);
-	while (index < *size)
+	while (game_board != NULL && index < *size)
 	{
 		new_game_board[index] = game_board[index];
 		index++;
 	}
+	*size = new_size;
 	free(game_board);
 	return (new_game_board);
 }
 
-static int	populate_freg_vector(char **game_board, int index,
-		int **freg_vector)
+int	*populate_freg_vector(char **game_board)
 {
 	int	i;
+	int	index;
+	int	*freq_vector;
 
+	freq_vector = malloc(sizeof(int) * 256);
 	i = 0;
-	while (game_board[index][i] != '\0' || game_board[index][i] != '\n')
+	while (i < 256)
+		freq_vector[i++] = 0;
+	index = 0;
+	while (game_board[index] != NULL)
 	{
-		freg_vector[(int)game_board[index][i]]++;
-		i++;
+		i = 0;
+		while (game_board[index][i] != '\0' && game_board[index][i] != '\n')
+		{
+			freq_vector[(int)game_board[index][i]]++;
+			i++;
+		}
+		index++;
 	}
-	return (i);
+	return (freq_vector);
 }
 
-static char	**populate_gameboard(int fd, int **freg_vector)
+static char	**populate_gameboard(int fd)
 {
 	char	**game_board;
 	int		i;
@@ -60,7 +71,6 @@ static char	**populate_gameboard(int fd, int **freg_vector)
 	while (line)
 	{
 		game_board[i] = line;
-		populate_freg_vector(game_board, i, freg_vector);
 		i++;
 		if (i == size)
 			game_board = realocate_gameboard(game_board, &size);
@@ -70,7 +80,7 @@ static char	**populate_gameboard(int fd, int **freg_vector)
 	return (game_board);
 }
 
-char	**create_gameboard(char *file_name, int **freg_vector)
+char	**create_gameboard(char *file_name)
 {
 	int	fd;
 
@@ -80,5 +90,5 @@ char	**create_gameboard(char *file_name, int **freg_vector)
 		ft_printf("Error\n", 2);
 		return (NULL);
 	}
-	return (populate_gameboard(fd, freg_vector));
+	return (populate_gameboard(fd));
 }

@@ -6,12 +6,13 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:54:32 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/26 20:51:45 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/29 00:14:30 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_elements.h"
 #include "mlx.h"
+#include "so_long.h"
 
 t_entity	load_player(char **game_board)
 {
@@ -49,6 +50,14 @@ t_settings	load_settings(void)
 	settings.player_down_path = "assests/ship_down.xpm";
 	settings.player_left_path = "assests/ship_left.xpm";
 	settings.player_right_path = "assests/ship_right.xpm";
+	settings.empty_space_path = "assests/floor.xpm";
+	settings.wall_path = "assests/Wall.xpm";
+	settings.collectible_path = "assests/Collectable.xpm";
+	settings.end_point_path = "assests/Finish_open.xpm";
+	settings.player_up_path = "assests/Sprite_up.xpm";
+	settings.player_down_path = "assests/Sprite_down.xpm";
+	settings.player_left_path = "assests/Sprite_left.xpm";
+	settings.player_right_path = "assests/Sprite_right.xpm";
 	return (settings);
 }
 

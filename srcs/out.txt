@@ -8,3 +8,4 @@
 ./main.c
 ./utils.c
 ./memory_management/free_mlx.c
+

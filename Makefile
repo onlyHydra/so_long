@@ -16,12 +16,12 @@ SRCS = \
 # 		src/map_checks_utils.c src/free_utils.c src/initialisation.c\
 # 		src/hook_actions.c src/pretty_terminal.c src/move.c
 
-CC = @cc
+CC = cc
 RM = @rm -f
 LIBFT_DIR = imports/ft_printf
 GNL_DIR = imports/get_next_line
 MLX_DIR = imports/minilibx-linux
-CFLAGS =  -g -Wall -Werror -Wextra -Iheader -I$(GNL_DIR) -I$(LIBFT_DIR)/header
+CFLAGS =  -g -Wall -Werror -Wextra -Iheader -I$(GNL_DIR) -I$(LIBFT_DIR)/header -I$(MLX_DIR) 
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 # here to add libs from gnl
 LIBS = $(LIBFT_DIR)/libftprintf.a $(GNL_DIR)/libgnl.a $(MLX_DIR)/libmlx.a

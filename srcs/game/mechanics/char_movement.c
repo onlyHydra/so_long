@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 13:50:13 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 19:38:57 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/29 00:12:23 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ static int	move_resume(int dir)
 
 static int	check_tile(t_game *game, int x, int y)
 {
-	if (game->game_board[y][x] == WALL)
+	if (game->game_board[x][y] == WALL || (game->game_board[x][y] == END_POINT
+			&& game->collectibles > 0))
 		return (0);
-	if (game->game_board[y][x] == END_POINT && game->collectibles == 0)
+	if (game->game_board[x][y] == END_POINT && game->collectibles == 0)
 		return (2);
-	if (game->game_board[y][x] == COLLECTIBLE)
+	if (game->game_board[x][y] == COLLECTIBLE)
 	{
-		game->game_board[y][x] = EMPTY_SPACE;
+		game->game_board[x][y] = EMPTY_SPACE;
 		game->collectibles--;
 	}
 	return (1);
@@ -53,10 +54,10 @@ void	move(t_game *game, int dir)
 	move_status = check_tile(game, player_x, player_y);
 	if (move_status == 0)
 		return ;
-	update_sprites(game, game->player.x, game->player.y, dir);
+	game->move++;
+	update_sprites(*game, player_x, player_y, dir);
 	game->player.x = player_x;
 	game->player.y = player_y;
-	game->move++;
 	if (move_status == 2)
 	{
 		ft_win(game);

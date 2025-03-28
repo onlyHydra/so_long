@@ -6,13 +6,13 @@
 #    By: schiper <schiper@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 15:45:27 by schiper           #+#    #+#              #
-#    Updated: 2025/03/25 19:31:07 by schiper          ###   ########.fr        #
+#    Updated: 2025/03/28 16:33:20 by schiper          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 # Directories
 SRC_DIR = src

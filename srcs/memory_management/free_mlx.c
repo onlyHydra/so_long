@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:23:12 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/26 21:27:13 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/28 23:21:30 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ void	free_assets(void *mlx, t_assets *assets)
 	free_sprite(mlx, assets->collectible);
 	free_sprite(mlx, assets->empty_space);
 	free_sprite(mlx, assets->end_point);
-	free(assets);
 }
 
 int	ft_close(t_game *game)
 {
-	mlx_destroy_window(game->mlx, game->wnd);
 	free_double_array(game->game_board);
-	free_assets(game->mlx, &(game->assets));
+	free_assets(game->mlx, &game->assets);
+	mlx_destroy_window(game->mlx, game->wnd);
 	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	exit(0);
 	return (0);
 }
