@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:05:23 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 19:30:39 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/28 15:17:05 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int	ft_strlen1(const char *s)
 	return (i);
 }
 
-int	ft_putchar(char c)
+int	ft_putchar1(char c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-int	ft_putstr(char *s)
+int	ft_putstr1(char *s)
 {
 	if (s == NULL)
 		s = "(null)";
@@ -43,15 +43,15 @@ int	ft_putnbr(int n)
 
 	count = 0;
 	if (n == -2147483648)
-		return (ft_putstr("-2147483648"));
+		return (ft_putstr1("-2147483648"));
 	if (n < 0)
 	{
-		count += ft_putchar('-');
+		count += ft_putchar1('-');
 		n = -n;
 	}
 	if (n >= 10)
 		count += ft_putnbr(n / 10);
 	c = (n % 10) + '0';
-	count += ft_putchar(c);
+	count += ft_putchar1(c);
 	return (count);
 }

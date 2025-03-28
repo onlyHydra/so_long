@@ -6,11 +6,12 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:13:27 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 19:38:46 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/26 14:51:21 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_elements.h"
+#include "so_long.h"
 #include "mlx.h"
 
 t_sprites	*image_to_sprite(void *mlx, char *path)
@@ -18,7 +19,7 @@ t_sprites	*image_to_sprite(void *mlx, char *path)
 	t_sprites	*sprite;
 
 	sprite = malloc(sizeof(t_sprites));
-	sprite->sprite = mlx_pnq_file_to_image(mlx, path, &sprite->width,
+	sprite->sprite = mlx_xpm_file_to_image(mlx, path, &sprite->width,
 			&sprite->height);
 	return (sprite);
 }

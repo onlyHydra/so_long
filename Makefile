@@ -1,62 +1,6 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: schiper <schiper@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/17 12:11:18 by schiper           #+#    #+#              #
-#    Updated: 2025/03/25 19:40:32 by schiper          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-NAME = so_long
-NAME_BONUS = so_long_bonus
-
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g $(SYSTEM) -I$(INC_DIR)
-
-OS_NAME = $(shell uname -s)
-ifeq ($(UNAME_S), Linux)
-	MLXFLAGS =  -Lmlx_Linux -lmlx_Linux -L ./mlx -Imlx_Linux -L ./libft -lft -lXext -lX11 -lm -lz
-endif
-ifeq ($(UNAME_S), Darwin)
-	MLXFLAGS	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
-endif
-
-AR			=	ar rcs
-RM			=	rm -f
-MD			=	mkdir -p
-CP			=	cp -f
-
-IMPORT = imports
-INC_DIR = header
-
-# Path to the MinilibX folder 
-MLX_PATH = $(IMPORT)/minilibx-linux
-MLX_LIB = $(MLX_PATH)/libmlx.a
-
-# URL to download the MinilibX tarball
-MLX_URL = https://cdn.intra.42.fr/document/document/31497/minilibx-linux.tgz
-
-# Path for downloading the tarball
-MLX_TAR = $(IMPORT)/minilibx-linux.tgz
-
-# Paths for libft (if needed for your project)
-LIBFT_PATH = $(IMPORT)/libft
-LIBFT_LIB = $(LIBFT_PATH)/libft.a
-
-# Path for ft_printf (if needed for your project)
-FT_PRINTF_PATH = $(IMPORT)/ft_printf
-FT_PRINTF_LIB = $(FT_PRINTF_PATH)/libftprintf.a
-
-# Path for get_next_line (if needed for your project)
-GET_NEXT_LINE_PATH = $(IMPORT)/get_next_line
-GET_NEXT_LINE_LIB = $(GET_NEXT_LINE_PATH)/libgnl.a
-
-# Sources and object files
 SRC_DIR = srcs
-MANDATORY_SRC = \
+SRCS = \
 	$(SRC_DIR)/validator/check_valid_gameboard.c \
 	$(SRC_DIR)/game/mechanics/char_movement.c \
 	$(SRC_DIR)/game/visuals/visuals.c \
@@ -68,10 +12,29 @@ MANDATORY_SRC = \
 	$(SRC_DIR)/utils.c \
 	$(SRC_DIR)/memory_management/free_mlx.c
 
-# Object files
-COMMON_OBJ  = $(COMMON_SRC:.c=.o)
-MANDATORY_OBJ = $(MANDATORY_SRC:.c=.o)
-BONUS_OBJ   = $(BONUS_SRC:.c=.o)
+# SRCS =	src/main.c src/utils.c src/map_checks.c src/init_utils.c\
+# 		src/map_checks_utils.c src/free_utils.c src/initialisation.c\
+# 		src/hook_actions.c src/pretty_terminal.c src/move.c
+
+CC = @cc
+RM = @rm -f
+LIBFT_DIR = imports/ft_printf
+GNL_DIR = imports/get_next_line
+MLX_DIR = imports/minilibx-linux
+CFLAGS =  -g -Wall -Werror -Wextra -Iheader -I$(GNL_DIR) -I$(LIBFT_DIR)/header
+MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+# here to add libs from gnl
+LIBS = $(LIBFT_DIR)/libftprintf.a $(GNL_DIR)/libgnl.a $(MLX_DIR)/libmlx.a
+OBJS =	$(SRCS:.c=.o)
+NAME = so_long
+
+
+MLX_PATH = imports/minilibx-linux
+# URL to download the MinilibX tarball
+MLX_URL = https://cdn.intra.42.fr/document/document/31497/minilibx-linux.tgz
+
+# Path for downloading the tarball
+MLX_TAR = imports/minilibx-linux.tgz
 
 # Color definitions for terminal output
 NO_COLOR      = \033[0m
@@ -93,39 +56,40 @@ check_mlx:
 	echo  "$(OK_STRING)$(OK_STRING) MinilibX is already installed.$(NO_COLOR)"; \
 	fi
 
-# Download and extract MinilibX if not already present
+# # Download and extract MinilibX if not already present
 download_mlx:
 	@printf "$(WARN_STRING) $(OK_COLOR)Downloading MinilibX...$(NO_COLOR)\n"
 	@mkdir -p $(MLX_PATH)
 	@curl -L $(MLX_URL) -o $(MLX_TAR)
 	@printf "$(WARN_STRING) $(OK_COLOR)Extracting MinilibX...\n $(NO_COLOR)"
-	@tar -xvzf $(MLX_TAR) -C $(IMPORT)
+	@tar -xvzf $(MLX_TAR) -C imports/ 
 	@rm -f $(MLX_TAR)
 	@printf "$(OK_STRING)$(OK_COLOR)MinilibX downloaded and extracted.\n $(NO_COLOR)"
 
 
 
-# Ensure ft_printf is built next (if needed)
-ft_printf: 
-	@echo "Building ft_printf..."
-	@$(MAKE) -C $(FT_PRINTF_PATH)
-
-# Ensure get_next_line is built (if needed)
-get_next_line:
-	@echo "Building get_next_line..."
-	@$(MAKE) -C $(GET_NEXT_LINE_PATH)
-
-# Default target (this will be used if no target is specified)
-all: check_mlx libft ft_printf get_next_line $(NAME)
-
-$(NAME): $(MANDATORY_OBJ)  $(FT_PRINTF_LIB) $(GET_NEXT_LINE_LIB) $(MLX_LIB)
-	@echo "Compiling $(NAME)..."
-	@$(CC) $(CFLAGS) $(MANDATORY_OBJ) $(FT_PRINTF_LIB) $(GET_NEXT_LINE_LIB) $(MLX_LIB) -o $(NAME) $(MLXFLAGS)
-	@echo "$(OK_STRING) $(OK_COLOR)$(NAME) compiled successfully!$(NO_COLOR)"
-
-# Rule to compile .c files to .o object files
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Default target (if no target specified)
-.PHONY: all check_mlx download_mlx libft ft_printf get_next_line
+all: check_mlx $(NAME)
+$(NAME): $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(GNL_DIR)
+	$(MAKE) -C $(MLX_DIR)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(LIBS) -o $(NAME)	
+
+clean:
+	$(RM) $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(GNL_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
+
+fclean: clean
+	$(RM) $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(RM) $(MLX_DIR)/libmlx.a
+	$(MAKE) -C $(GNL_DIR) fclean
+
+re: fclean all
+ 
+.PHONY: all libft clean fcelan re 

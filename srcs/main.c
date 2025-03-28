@@ -6,19 +6,20 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:05:52 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 18:15:02 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/26 21:13:15 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "game_elements.h"
-#include "imports/get_next_line/get_next_line_bonus.h"
-#include "imports/minilibx-linux/mlx.h"
+#include "get_next_line_bonus.h"
+#include "mlx.h"
 #include "so_long.h"
 
 int	ft_key_hook(int keycode, t_game *game)
 {
 	if (keycode == ESC)
-		ft_exit(game);
+		ft_close(game);
 	else if (keycode == UP)
 		move(game, UP);
 	else if (keycode == LEFT)

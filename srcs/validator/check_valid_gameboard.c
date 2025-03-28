@@ -6,11 +6,12 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:15:46 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 19:39:07 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/28 15:47:55 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_elements.h"
+#include "ft_printf.h"
 #include "so_long.h"
 
 static void	flood_fill(char **board, int x, int y)
@@ -107,6 +108,6 @@ int	validate_game_board(char **game_board, int *freq_vector,
 	valid = validate_boarder(game_board)
 		+ validate_unique_game_elements(freq_vector);
 	if (validate_path_to_end(game_board, game_elements) != 0)
-		add_error_message("Not all elements on the board are reachable");
+		ft_printf("Not all elements on the board are reachable");
 	return (valid);
 }

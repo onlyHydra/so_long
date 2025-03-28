@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:33:22 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 18:05:45 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/26 21:27:20 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ void				game_printer(t_game *game);
 t_assets			load_assets(void *mlx, t_settings *settings);
 t_settings			load_settings(void);
 t_entity			load_player(char **game_board);
+t_game_elements		load_elements(char **game_board);
 t_game				initialise_all(char *str);
 t_sprites			*image_to_sprite(void *mlx, char *path);
-void				game_loop(t_game *game);
-void				free_double_array(void **array);
+int					game_loop(t_game *game);
+void				free_double_array(char **array);
 #endif // GAME_ELEMENTS_H

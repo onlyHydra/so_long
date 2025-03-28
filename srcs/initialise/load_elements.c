@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:54:32 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/25 19:38:01 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/26 20:51:45 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ t_settings	load_settings(void)
 {
 	t_settings	settings;
 
-	settings.empty_space_path = "";
-	settings.wall_path = "";
-	settings.collectible_path = "";
-	settings.end_point_path = "";
-	settings.player_down_path = "";
-	settings.player_up_path = "";
-	settings.player_left_path = "";
-	settings.player_right_path = "";
+	settings.empty_space_path = "assests/background.xpm";
+	settings.wall_path = "assests/wall.xpm";
+	settings.collectible_path = "assests/collectable.xpm";
+	settings.end_point_path = "assests/exit.xpm";
+	settings.player_up_path = "assests/ship_up.xpm";
+	settings.player_down_path = "assests/ship_down.xpm";
+	settings.player_left_path = "assests/ship_left.xpm";
+	settings.player_right_path = "assests/ship_right.xpm";
 	return (settings);
 }
 
