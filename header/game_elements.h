@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:33:22 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/29 00:12:25 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/29 13:53:29 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,13 @@ t_assets			load_assets(void *mlx, t_settings *settings);
 t_settings			load_settings(void);
 t_entity			load_player(char **game_board);
 t_game_elements		load_elements(char **game_board);
-t_game				initialise_all(char *str);
+t_game				initialise_all(int fds);
 t_sprites			*image_to_sprite(void *mlx, char *path);
 void				free_double_array(char **array);
+void				free_assets(void *mlx, t_assets *assets);
 int					*populate_freg_vector(char **game_board);
+char				**copy_game_board(char **game_board);
+int					same_size(char **game_board);
 char				**copy_game_board(char **game_board);
 
 #endif // GAME_ELEMENTS_H

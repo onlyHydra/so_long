@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:05:52 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/29 00:14:03 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/29 14:06:39 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,39 @@
 #include "mlx.h"
 #include "so_long.h"
 
+int	same_size(char **game_board)
+{
+	int	i;
+	int	prev_len;
+	int	curr_len;
+
+	prev_len = ft_strlen(game_board[0]);
+	if (game_board[0][prev_len - 1] == '\n')
+		prev_len--;
+	i = 1;
+	while (game_board[i])
+	{
+		curr_len = ft_strlen(game_board[i]);
+		if (game_board[i][curr_len - 1] == '\n')
+			curr_len--;
+		if (curr_len != prev_len)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_key_hook(int keycode, t_game *game)
 {
-	ft_printf("keycode: %d\n", keycode);
 	if (keycode == ESC)
 		ft_close(game);
-	else if (keycode == UP)
+	else if (keycode == UP && game->exit == 0)
 		move(game, UP);
-	else if (keycode == LEFT)
+	else if (keycode == LEFT && game->exit == 0)
 		move(game, LEFT);
-	else if (keycode == DOWN)
+	else if (keycode == DOWN && game->exit == 0)
 		move(game, DOWN);
-	else if (keycode == RIGHT)
+	else if (keycode == RIGHT && game->exit == 0)
 		move(game, RIGHT);
 	return (0);
 }
@@ -48,6 +69,7 @@ static void	game_loop2(t_game *game)
 
 int	main(int argc, char **argv)
 {
+	int		fd;
 	t_game	game;
 
 	if (argc != 2)
@@ -55,7 +77,17 @@ int	main(int argc, char **argv)
 		ft_printf("Error:\n Wrong number of arguments\n");
 		return (1);
 	}
-	game = initialise_all(argv[1]);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf("Error\n File does not exist", 2);
+		close(fd);
+		return (1);
+	}
+	game = initialise_all(fd);
+	close(fd);
+	if (game.game_board == NULL)
+		return (1);
 	game_loop2(&game);
 	return (0);
 }

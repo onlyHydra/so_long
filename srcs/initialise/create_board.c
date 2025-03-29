@@ -6,7 +6,7 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:37 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/28 18:49:21 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/29 12:46:40 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,7 @@ static char	**populate_gameboard(int fd)
 	return (game_board);
 }
 
-char	**create_gameboard(char *file_name)
+char	**create_gameboard(int fd)
 {
-	int	fd;
-
-	fd = open(file_name, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_printf("Error\n", 2);
-		return (NULL);
-	}
 	return (populate_gameboard(fd));
 }

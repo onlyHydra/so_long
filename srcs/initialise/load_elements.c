@@ -6,11 +6,12 @@
 /*   By: schiper <schiper@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:54:32 by schiper           #+#    #+#             */
-/*   Updated: 2025/03/29 00:14:30 by schiper          ###   ########.fr       */
+/*   Updated: 2025/03/29 12:46:42 by schiper          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_elements.h"
+#include "ft_printf.h"
 #include "mlx.h"
 #include "so_long.h"
 
